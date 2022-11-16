@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Modules\Shared\Data\OrderBook;
+namespace Modules\Shared\Data;
 
 use Illuminate\Support\Collection;
-use Modules\Shared\Data\PairWithDirectionDto;
+use Modules\Shared\Data\OrderBook\PairWithDirectionDto;
 
 class PathToPairDto
 {

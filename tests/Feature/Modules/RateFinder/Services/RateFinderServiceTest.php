@@ -16,8 +16,8 @@ class RateFinderServiceTest extends TestCase
         /** @var RateFinderService $service */
         $service = $this->app->make(RateFinderService::class);
         $service->find(new FindRateDto(
-            CryptoTickerEnum::BTC,
-            CryptoTickerEnum::ETH,
+            'BTC',
+            'ETH',
             0.009
         ));
     }

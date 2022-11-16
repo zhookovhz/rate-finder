@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Shared\Data;
-
-use Modules\Shared\Data\OrderBook\OrderTypeEnum;
+namespace Modules\Shared\Data\OrderBook;
 
 class PairWithDirectionDto
 {
