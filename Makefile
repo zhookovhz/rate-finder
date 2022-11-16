@@ -1,12 +1,12 @@
-install: env sail-install
+install: env composer-init
 
 env:
 	test -s .env || cp .env.example .env
 
-sail-install:
+composer-init:
 	docker run --rm --interactive --tty -v $${PWD}:/app -w /app -u $$(id -u):$$(id -g) \
 	laravelsail/php81-composer:latest \
-	bash -c "composer install --ignore-platform-reqs && php artisan sail:install --with=pgsql,redis"
+	bash -c "composer install --ignore-platform-reqs"
 
 up:
 	vendor/bin/sail up -d --remove-orphans

@@ -33,7 +33,7 @@ class BinanceGatewayTest extends TestCase
         $result = $gateway->getMarkets();
 
         foreach ($result as $key => $market) {
-            $this->assertEquals($markets[$key]['from'], $market->base);
+            $this->assertEquals($markets[$key]['from'], $market->from);
             $this->assertEquals($markets[$key]['to'], $market->quote);
         }
     }
@@ -59,7 +59,7 @@ class BinanceGatewayTest extends TestCase
      */
     public function testFindInOrderBook(OrderTypeEnum $type, array $orders): void
     {
-        $typeKey = strtolower($type->name) . 's';
+        $typeKey = strtolower($type->value) . 's';
 
         $binance = $this->createMock(binance::class);
         $binance->expects($this->once())->method('fetch_order_book')->willReturn($orders);

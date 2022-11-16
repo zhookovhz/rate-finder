@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Modules\RateFinder\Gateways;
 
 use Illuminate\Support\Collection;
-use Modules\Shared\Data\MarketDto;
+use Modules\Shared\Data\PairDto;
 use Modules\Shared\Data\OrderBook\GetOrderBookDto;
 
 interface ExchangeGatewayInterface
 {
-    /** @return Collection<MarketDto> */
+    /** @return Collection<PairDto> */
     public function getMarkets(): Collection;
 
     /**

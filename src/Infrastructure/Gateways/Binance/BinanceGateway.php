@@ -8,7 +8,7 @@ use ccxt\binance;
 use Illuminate\Support\Collection;
 use Infrastructure\Gateways\Binance\Exceptions\UnknownOrderTypeException;
 use Modules\RateFinder\Gateways\ExchangeGatewayInterface;
-use Modules\Shared\Data\MarketDto;
+use Modules\Shared\Data\PairDto;
 use Modules\Shared\Data\OrderBook\GetOrderBookDto;
 use Modules\Shared\Data\OrderBook\OrderDto;
 use Modules\Shared\Data\OrderBook\OrderTypeEnum;
@@ -19,14 +19,14 @@ class BinanceGateway implements ExchangeGatewayInterface
     {
     }
 
-    /** @return Collection<MarketDto> */
+    /** @return Collection<PairDto> */
     public function getMarkets(): Collection
     {
         $markets = $this->binance->load_markets();
 
         $output = [];
         foreach ($markets as $market) {
-            $output[] = new MarketDto(
+            $output[] = new PairDto(
                 $market['base'],
                 $market['quote']
             );

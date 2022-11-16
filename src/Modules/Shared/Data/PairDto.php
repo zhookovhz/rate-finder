@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Shared\Data;
 
-class MarketDto
+class PairDto
 {
     public function __construct(
-        public readonly string $base,
-        public readonly string $quote,
+        public readonly string $from,
+        public readonly string $to,
     ) {
     }
 }

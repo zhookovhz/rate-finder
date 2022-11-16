@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\RateFinder\RateFinderServiceProvider;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -195,6 +196,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Modules Service Providers...
+         */
+        RateFinderServiceProvider::class,
     ],
 
     /*
