@@ -3,14 +3,14 @@
 
 ``make install``
 
-## Using
+## Commands
 
 ``make up``
 
 ``make down``
 
-``make migrate``
-
 ``make test``
 
+## Using
 
+You should just open ``http://localhost/api/documentation`` and press the ``Try it out!`` button 
