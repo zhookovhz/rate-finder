@@ -10,7 +10,6 @@ use Modules\RateFinder\Data\FindRateDto;
 use Modules\RateFinder\Data\RateDto;
 use Modules\RateFinder\Gateways\ExchangeGatewayInterface;
 
-
 class RateFinderService implements RateFinderServiceInterface
 {
     public function __construct(

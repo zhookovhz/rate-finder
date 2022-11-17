@@ -16,6 +16,3 @@ down:
 
 test:
 	vendor/bin/sail test
-
-migrate:
-	vendor/bin/sail artisan migrate:fresh
