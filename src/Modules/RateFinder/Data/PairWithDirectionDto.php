@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Modules\Shared\Data\OrderBook;
+namespace Modules\RateFinder\Data;
+
+use Modules\Shared\Data\OrderBook\OrderTypeEnum;
 
 class PairWithDirectionDto
 {

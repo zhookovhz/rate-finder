@@ -6,10 +6,10 @@ namespace Tests\Unit\Modules\RateFinder\Services;
 
 use Illuminate\Support\Collection;
 use Modules\RateFinder\Data\FindRateDto;
+use Modules\RateFinder\Data\PathToPairDto;
 use Modules\RateFinder\Services\PathFinder;
 use Modules\Shared\Data\OrderBook\OrderTypeEnum;
 use Modules\Shared\Data\PairDto;
-use Modules\Shared\Data\PathToPairDto;
 use Tests\TestCase;
 
 class PathFinderTest extends TestCase
@@ -42,22 +42,22 @@ class PathFinderTest extends TestCase
 
         $this->assertEquals('BTC', $firstPath->pairs->get(0)->from);
         $this->assertEquals('SOL', $firstPath->pairs->get(0)->to);
-        $this->assertEquals(OrderTypeEnum::BID, $firstPath->pairs->get(0)->direction);
+        $this->assertEquals(OrderTypeEnum::ASK, $firstPath->pairs->get(0)->direction);
 
         $this->assertEquals('SOL', $firstPath->pairs->get(1)->from);
         $this->assertEquals('ETH', $firstPath->pairs->get(1)->to);
-        $this->assertEquals(OrderTypeEnum::BID, $firstPath->pairs->get(1)->direction);
+        $this->assertEquals(OrderTypeEnum::ASK, $firstPath->pairs->get(1)->direction);
 
         $this->assertEquals('BTC', $secondPath->pairs->get(0)->from);
         $this->assertEquals('XRP', $secondPath->pairs->get(0)->to);
-        $this->assertEquals(OrderTypeEnum::BID, $secondPath->pairs->get(0)->direction);
+        $this->assertEquals(OrderTypeEnum::ASK, $secondPath->pairs->get(0)->direction);
 
         $this->assertEquals('ETH', $secondPath->pairs->get(1)->from);
         $this->assertEquals('XRP', $secondPath->pairs->get(1)->to);
-        $this->assertEquals(OrderTypeEnum::ASK, $secondPath->pairs->get(1)->direction);
+        $this->assertEquals(OrderTypeEnum::BID, $secondPath->pairs->get(1)->direction);
 
         $this->assertEquals('ETH', $thirdPath->pairs->get(0)->from);
         $this->assertEquals('BTC', $thirdPath->pairs->get(0)->to);
-        $this->assertEquals(OrderTypeEnum::ASK, $thirdPath->pairs->get(0)->direction);
+        $this->assertEquals(OrderTypeEnum::BID, $thirdPath->pairs->get(0)->direction);
     }
 }

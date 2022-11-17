@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Modules\Shared\Data;
+namespace Modules\RateFinder\Data;
 
 use Illuminate\Support\Collection;
-use Modules\Shared\Data\OrderBook\PairWithDirectionDto;
 
 class PathToPairDto
 {

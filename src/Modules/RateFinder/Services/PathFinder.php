@@ -6,10 +6,10 @@ namespace Modules\RateFinder\Services;
 
 use Illuminate\Support\Collection;
 use Modules\RateFinder\Data\FindRateDto;
+use Modules\RateFinder\Data\PairWithDirectionDto;
+use Modules\RateFinder\Data\PathToPairDto;
 use Modules\Shared\Data\OrderBook\OrderTypeEnum;
-use Modules\Shared\Data\OrderBook\PairWithDirectionDto;
 use Modules\Shared\Data\PairDto;
-use Modules\Shared\Data\PathToPairDto;
 
 class PathFinder
 {
@@ -80,14 +80,14 @@ class PathFinder
     private function createSingleDirectPath(PairDto $direct): PathToPairDto
     {
         return $this->createPathDto([
-            $this->createPair($direct, OrderTypeEnum::BID)
+            $this->createPairWithDirectionDto($direct, OrderTypeEnum::ASK)
         ]);
     }
 
     private function createSingleReversePath(PairDto $reverse): PathToPairDto
     {
         return $this->createPathDto([
-            $this->createPair($reverse, OrderTypeEnum::ASK)
+            $this->createPairWithDirectionDto($reverse, OrderTypeEnum::BID)
         ]);
     }
 
@@ -98,14 +98,14 @@ class PathFinder
         // check FROM/... array and try find matches
         foreach ($fromDirect as $pair) {
             if (isset($toDirect[$pair->to])) { // match in .../TO array
-                $secondPair = $this->createPair($toDirect[$pair->to], OrderTypeEnum::BID);
+                $secondPair = $this->createPairWithDirectionDto($toDirect[$pair->to], OrderTypeEnum::ASK);
             } elseif (isset($toReverse[$pair->to])) { // match in TO/... array
-                $secondPair = $this->createPair($toReverse[$pair->to], OrderTypeEnum::ASK);
+                $secondPair = $this->createPairWithDirectionDto($toReverse[$pair->to], OrderTypeEnum::BID);
             } else {
                 continue;
             }
 
-            $firstPair = $this->createPair($pair, OrderTypeEnum::BID);
+            $firstPair = $this->createPairWithDirectionDto($pair, OrderTypeEnum::ASK);
             $paths[] = $this->createPathDto([$firstPair, $secondPair]);
         }
 
@@ -119,14 +119,14 @@ class PathFinder
         // check .../FROM array and try find matches
         foreach ($fromReverse as $pair) {
             if (isset($toReverse[$pair->from])) { // match in TO/... array
-                $secondPair = $this->createPair($toReverse[$pair->from], OrderTypeEnum::ASK);
+                $secondPair = $this->createPairWithDirectionDto($toReverse[$pair->from], OrderTypeEnum::BID);
             } elseif (isset($toDirect[$pair->from])) { // match in .../TO array
-                $secondPair = $this->createPair($toDirect[$pair->from], OrderTypeEnum::BID);
+                $secondPair = $this->createPairWithDirectionDto($toDirect[$pair->from], OrderTypeEnum::ASK);
             } else {
                 continue;
             }
 
-            $firstPair = $this->createPair($pair, OrderTypeEnum::ASK);
+            $firstPair = $this->createPairWithDirectionDto($pair, OrderTypeEnum::BID);
             $paths[] = $this->createPathDto([$firstPair, $secondPair]);
         }
 
@@ -142,7 +142,7 @@ class PathFinder
         return new PathToPairDto(new Collection($pairs));
     }
 
-    private function createPair(PairDto $pair, OrderTypeEnum $direction): PairWithDirectionDto
+    private function createPairWithDirectionDto(PairDto $pair, OrderTypeEnum $direction): PairWithDirectionDto
     {
         return new PairWithDirectionDto(
             $pair->from,

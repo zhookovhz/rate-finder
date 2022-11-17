@@ -34,7 +34,7 @@ class BinanceGatewayTest extends TestCase
 
         foreach ($result as $key => $market) {
             $this->assertEquals($markets[$key]['from'], $market->from);
-            $this->assertEquals($markets[$key]['to'], $market->quote);
+            $this->assertEquals($markets[$key]['to'], $market->to);
         }
     }
 
