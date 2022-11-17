@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Modules\Shared\Exceptions\DomainException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -46,5 +48,25 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $e)
+    {
+        if ($e instanceof DomainException) {
+            return $this->domainRender($e);
+        }
+        return parent::render($request, $e);
+    }
+
+    private function domainRender(DomainException $e): JsonResponse
+    {
+        return response()->json([
+            'result' => null,
+            'error' => [
+                'code' => $e->getErrorAlias(),
+                'message' => $e->getMessage(),
+                'payload' => $e->getPayload(),
+            ],
+        ], $e->getCode());
     }
 }
