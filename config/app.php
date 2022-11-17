@@ -200,6 +200,9 @@ return [
          * Modules Service Providers...
          */
         RateFinderServiceProvider::class,
+
+
+        L5Swagger\L5SwaggerServiceProvider::class,
     ],
 
     /*

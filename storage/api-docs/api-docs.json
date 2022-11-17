@@ -1,0 +1,109 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Rate finder",
+        "version": "0.1"
+    },
+    "paths": {
+        "/rate": {
+            "get": {
+                "tags": [
+                    "rate"
+                ],
+                "summary": "Find the best rates",
+                "operationId": "020997b7f09b1421cbfe9f2126ba4e95",
+                "parameters": [
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "to",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "amount",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "An result object.",
+                                        "value": {
+                                            "result": [
+                                                {
+                                                    "path": [
+                                                        {
+                                                            "from": "ETH",
+                                                            "to": "XRP",
+                                                            "direction": "ASK"
+                                                        },
+                                                        {
+                                                            "from": "XRP",
+                                                            "to": "BTC",
+                                                            "direction": "ASK"
+                                                        }
+                                                    ],
+                                                    "rate": 0.3
+                                                },
+                                                {
+                                                    "path": [
+                                                        {
+                                                            "from": "ETH",
+                                                            "to": "SOL",
+                                                            "direction": "ASK"
+                                                        },
+                                                        {
+                                                            "from": "BTC",
+                                                            "to": "SOL",
+                                                            "direction": "BID"
+                                                        }
+                                                    ],
+                                                    "rate": 0.2
+                                                },
+                                                {
+                                                    "path": [
+                                                        {
+                                                            "from": "ETH",
+                                                            "to": "BTC",
+                                                            "direction": "ASK"
+                                                        }
+                                                    ],
+                                                    "rate": 0.1
+                                                }
+                                            ],
+                                            "error": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
